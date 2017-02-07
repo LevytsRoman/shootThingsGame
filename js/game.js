@@ -1,7 +1,8 @@
 var Game = function(args) {
   this.player = args.player,
   this.score = 0,
-  this.over = false
+  this.over = false,
+  this.lives = 3
 }
 
 Game.prototype.spawnEnemy = function(){
@@ -26,4 +27,29 @@ Game.prototype.updateScore = function(){
   // debugger
   this.score ++;
   document.getElementById("score").innerHTML = "Score: " + this.score;
+}
+
+Game.prototype.updateLives = function(){
+  this.lives -= 1;
+  document.getElementById("lives").innerHTML = "Lives: " + this.lives;
+  if(this.lives === 0){
+    this.over = true;
+    this.gameOver();
+  }
+}
+
+Game.prototype.gameOver = function(){
+  // debugger
+  var enemies = document.getElementsByClassName("enemy"),
+      l = enemies.length;
+  for(var i=l-1; i >= 0; i--){
+    console.log(enemies);
+    blowUp(enemies[i].offsetLeft, enemies[i].offsetTop);
+    deleteElement(enemies[i]);
+  }
+  blowUp(0, this.player.pos);
+  deleteElement(document.getElementById('player'));
+  setTimeout(function(){
+    document.getElementById("game-over").style.display = 'block';
+  }, 2000);
 }

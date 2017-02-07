@@ -6,4 +6,4 @@ var bulletLeft = 5;
 newPlayer = new Player('player');
 newGame = new Game(player => newPlayer);
 
-document.getElementById('start').onclick = newGame.start;
+newGame.start();

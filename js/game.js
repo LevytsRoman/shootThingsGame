@@ -8,7 +8,7 @@ Game.prototype.spawnEnemy = function(){
   if(!this.over){
     var enemy = createElement("enemy", 1000, 350 * Math.random());
     moveElement(enemy, enemyRefresh, enemyLeft, 1000);
-    setTimeout(this.spawnEnemy.bind(this), 500);
+    setTimeout(this.spawnEnemy.bind(this), 1500);
   }
 }
 

@@ -19,7 +19,7 @@ body {
     left: 1300px;
 }
 
-#score {
+#info {
     background-color: black;
     color: gold;
     font-family: fantasy;
@@ -31,7 +31,7 @@ body {
     top: 70px;
     line-height: 30px;
 }
-#start {
+#start, #game-over {
     opacity: .5;
     width: 1000px;
     height: 400px;
@@ -45,11 +45,17 @@ body {
     line-height: 400px;
     z-index: 7;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;  
-    -khtml-user-select: none;    
-    -moz-user-select: none;      
-    -ms-user-select: none; 
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
+
+#game-over {
+    color: red;
+    display: none;
+}
+
 #start:hover{
     font-size: 35px;
     color: gold;
@@ -89,7 +95,7 @@ body {
     height: 50px;
     background-image: url("../images/enemy.png");
     background-size: cover;
-    position: absolute; 
+    position: absolute;
     display: inline-block;
     z-index: 4;
 }

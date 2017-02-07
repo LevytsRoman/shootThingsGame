@@ -64,11 +64,11 @@ function start(){
             var r = enemy[n].id;
             var deadEnemy = document.getElementById(r);
                 if(deadEnemy !== null){
-                if(a.offsetTop > deadEnemy.offsetTop - 50 && a.offsetTop < deadEnemy.offsetTop + 50 && deadEnemy.offsetLeft>0){
-                    var t = (deadEnemy.offsetLeft - a.offsetLeft)/(enemyLeft/enemyRefresh + bulletLeft/bulletRefresh);
-                    setTimeout(function(){kill(a,r)}, t); //calls function kill after t miliseconds
-                    return
-                    }
+                  if(a.offsetTop > deadEnemy.offsetTop - 50 && a.offsetTop < deadEnemy.offsetTop + 50 && deadEnemy.offsetLeft>0){
+                      var t = (deadEnemy.offsetLeft - a.offsetLeft)/(enemyLeft/enemyRefresh + bulletLeft/bulletRefresh);
+                      setTimeout(function(){kill(a,r)}, t); //calls function kill after t miliseconds
+                      return
+                  }
                 }
             }
         }
@@ -142,18 +142,6 @@ function start(){
             var g = 1;
             /* explode variable controls the explotion animation which loops from 1 to 6 setting the div's background image to appropritate one
             sometimes leaves the explosion divs before they reach the final stage, also doesn't remove them, investigating*/
-            var explode = setInterval(
-                function(){
-                    if(g<7){
-                        var c = "url(images/explosion" + g + ".png)";
-                            explosion.style.backgroundImage = c;
-                            g++;
-                    } else{
-                            clearInterval(explode);
-                            g = 1;
-                            explosion.style.display = 'none';
-                    }
-                },50);
         }
     }
 

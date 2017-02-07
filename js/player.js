@@ -1,24 +1,3 @@
-var Game = function(args) {
-  this.player = args.player,
-  this.score = 0,
-  this.over = false
-}
-
-Game.prototype.spawnEnemy = function(){
-  if(!this.over){
-    var enemy = createElement("enemy", 500, 350 * Math.random());
-    moveElement(enemy, 50, -10, 1000);
-    setTimeout(this.spawnEnemy.bind(this), 3000);
-  }
-}
-
-Game.prototype.start = function(){
-  document.getElementById("start").style.display = 'none';
-  newPlayer.move();
-  newPlayer.shoot();
-  newGame.spawnEnemy();
-}
-
 var Player = function(playerId){
   this.pos = 170,
   this.plane = document.getElementById(playerId),
@@ -41,30 +20,7 @@ Player.prototype.move = function(){
 Player.prototype.shoot = function(){
   window.onclick = function(e){
     var bullet = createElement("bullet", 0, newPlayer.pos);
-    moveElement(bullet, 50, 10, 500);
+    moveElement(bullet, bulletRefresh, bulletLeft, 975);
+    collisionDetect(bullet);
   }.bind(this)
 }
-
-function createElement(elementClass, startingX, startingY){
-  newElement = document.createElement('div');
-  newElement.className = elementClass;
-  document.getElementById('gameArea').appendChild(newElement);
-  newElement.style.top = startingY + 'px';
-  newElement.style.left = startingX + 'px';
-  return newElement;
-}
-
-function moveElement(element, interval, pixels, limit){
-  var elementX = element.offsetLeft;
-  elementX += pixels;
-  element.style.left = elementX + 'px';
-  var moveTimer = setTimeout(moveElement.bind(null, element, interval, pixels, limit), interval);
-  if(elementX < 0 || elementX > limit){
-    clearInterval(moveTimer);
-  }
-}
-
-newPlayer = new Player('player');
-newGame = new Game(player => newPlayer);
-
-document.getElementById('start').onclick = newGame.start;

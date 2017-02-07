@@ -11,8 +11,9 @@ var enemy = new Array; // stores enemies
 var i = 1; // each new bullet is given an id of i, i starts at 1 and is incremented by 2
 var j = 0; // each new enemy is given id of j, j starts at 0 and is also incremented by 2, this ensures unique id for every enemy and bullet
 document.getElementById("player").style.top = 180 + 'px'; //positions the player in the middle of the game area
+
 function start(){
-    document.getElementById("start").style.display = 'none'; // when the game starts removes the start screen
+     // when the game starts removes the start screen
     // function move is responsible for moving the player up and down with W and S respectively, activated on keydown
     function move(e){
         var player = document.getElementById("player");
@@ -60,15 +61,14 @@ function start(){
         for(n=0; n < enemy.length; n++){
             if(enemy[n] == null){}
             else{
-
             var r = enemy[n].id;
             var deadEnemy = document.getElementById(r);
                 if(deadEnemy !== null){
-                if(a.offsetTop > deadEnemy.offsetTop - 50 && a.offsetTop < deadEnemy.offsetTop + 50 && deadEnemy.offsetLeft>0){
-                    var t = (deadEnemy.offsetLeft - a.offsetLeft)/(enemyLeft/enemyRefresh + bulletLeft/bulletRefresh);
-                    setTimeout(function(){kill(a,r)}, t); //calls function kill after t miliseconds
-                    return
-                    }
+                  if(a.offsetTop > deadEnemy.offsetTop - 50 && a.offsetTop < deadEnemy.offsetTop + 50 && deadEnemy.offsetLeft>0){
+                      var t = (deadEnemy.offsetLeft - a.offsetLeft)/(enemyLeft/enemyRefresh + bulletLeft/bulletRefresh);
+                      setTimeout(function(){kill(a,r)}, t); //calls function kill after t miliseconds
+                      return
+                  }
                 }
             }
         }
@@ -142,18 +142,6 @@ function start(){
             var g = 1;
             /* explode variable controls the explotion animation which loops from 1 to 6 setting the div's background image to appropritate one
             sometimes leaves the explosion divs before they reach the final stage, also doesn't remove them, investigating*/
-            var explode = setInterval(
-                function(){
-                    if(g<7){
-                        var c = "url(images/explosion" + g + ".png)";
-                            explosion.style.backgroundImage = c;
-                            g++;
-                    } else{
-                            clearInterval(explode);
-                            g = 1;
-                            explosion.style.display = 'none';
-                    }
-                },50);
         }
     }
 

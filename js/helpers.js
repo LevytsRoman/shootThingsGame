@@ -8,13 +8,22 @@ function createElement(elementClass, startingX, startingY){
 }
 
 function moveElement(element, interval, pixels, limit){
-  var elementX = element.offsetLeft;
-  elementX += pixels;
-  element.style.left = elementX + 'px';
-  var moveTimer = setTimeout(moveElement.bind(null, element, interval, pixels, limit), interval);
-  if(elementX < 0 || elementX > limit){
-    clearInterval(moveTimer);
-    deleteElement(element);
+  // debugger
+  if(!newGame.over){
+    var elementX = element.offsetLeft;
+    elementX += pixels;
+    element.style.left = elementX + 'px';
+    var moveTimer = setTimeout(moveElement.bind(null, element, interval, pixels, limit), interval);
+    if(elementX < 0){
+      // debugger
+      clearInterval(moveTimer);
+      deleteElement(element);
+      newGame.updateLives();
+    }
+    if(elementX > limit){
+      clearInterval(moveTimer);
+      deleteElement(element);
+    }
   }
 }
 
@@ -26,16 +35,18 @@ function deleteElement(element){
 
 function collisionDetect(){
   // debugger
-  var enemies = document.getElementsByClassName("enemy");
-  var bullets = document.getElementsByClassName("bullet");
-  for(var i=0; i < enemies.length; i++){
-    for(var j=0; j < bullets.length; j++){
-      if(bullets[j].offsetTop > enemies[i].offsetTop -50 && bullets[j].offsetTop < enemies[i].offsetTop +50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){
-        // debugger
-        this.updateScore();
-        blowUp(enemies[i].offsetLeft, enemies[i].offsetTop);
-        deleteElement(bullets[j]);
-        deleteElement(enemies[i]);
+  if(!this.over){
+    var enemies = document.getElementsByClassName("enemy");
+    var bullets = document.getElementsByClassName("bullet");
+    for(var i=0; i < enemies.length; i++){
+      for(var j=0; j < bullets.length; j++){
+        if(bullets[j].offsetTop > enemies[i].offsetTop -50 && bullets[j].offsetTop < enemies[i].offsetTop +50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){
+          // debugger
+          this.updateScore();
+          blowUp(enemies[i].offsetLeft, enemies[i].offsetTop);
+          deleteElement(bullets[j]);
+          deleteElement(enemies[i]);
+        }
       }
     }
   }

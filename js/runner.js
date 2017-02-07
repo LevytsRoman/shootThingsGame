@@ -4,6 +4,6 @@ var enemyLeft = -5;
 var bulletLeft = 5;
 
 newPlayer = new Player('player');
-newGame = new Game(player => newPlayer);
+newGame = new Game({player: newPlayer});
 
 newGame.start();

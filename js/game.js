@@ -13,9 +13,17 @@ Game.prototype.spawnEnemy = function(){
 }
 
 Game.prototype.start = function(){
-  document.getElementById("start").style.display = 'none';
-  newPlayer.move();
-  newPlayer.shoot();
-  newGame.spawnEnemy();
-  setInterval(collisionDetect, 10);
+  document.getElementById('start').onclick = function(){
+    document.getElementById("start").style.display = 'none';
+    newPlayer.move();
+    newPlayer.shoot();
+    newGame.spawnEnemy();
+    setInterval(collisionDetect.bind(this), 10);
+  }.bind(this);
+}
+
+Game.prototype.updateScore = function(){
+  // debugger
+  this.score ++;
+  document.getElementById("score").innerHTML = "Score: " + this.score;
 }

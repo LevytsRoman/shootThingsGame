@@ -13,8 +13,7 @@ function moveElement(element, interval, pixels, limit){
     elementX += pixels;
     element.style.left = elementX + 'px';
     var moveTimer = setTimeout(moveElement.bind(null, element, interval, pixels, limit), interval);
-    if(elementX < -5){
-      debugger
+    if(elementX < -10){
       clearInterval(moveTimer);
       deleteElement(element);
       newGame.updateLives();

@@ -28,9 +28,7 @@ function moveElement(element, interval, pixels, limit){
 }
 
 function deleteElement(element){
-  if(element){
-    element.parentNode.removeChild(element);
-  }
+  element.parentNode.removeChild(element);
 }
 
 function collisionDetect(){
@@ -69,5 +67,5 @@ function blowUp(x,y){
       clearInterval(explode);
       deleteElement(explosion);
     }
-  }, 50);
+  }, 100);
 }

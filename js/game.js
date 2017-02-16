@@ -7,9 +7,12 @@ var Game = function(args) {
 
 Game.prototype.spawnEnemy = function(){
   if(!this.over){
+    if(enemyRefresh >= 5){enemyRefresh -= 1;}
+    if(enemySpawnInterval >= 500){enemySpawnInterval -= 20;}
+
     var enemy = createElement("enemy", 1000, 350 * Math.random());
     moveElement(enemy, enemyRefresh, enemyLeft, 1000);
-    setTimeout(this.spawnEnemy.bind(this), 1500);
+    setTimeout(this.spawnEnemy.bind(this), enemySpawnInterval);
   }
 }
 
@@ -51,5 +54,5 @@ Game.prototype.gameOver = function(){
   deleteElement(document.getElementById('player'));
   setTimeout(function(){
     document.getElementById("game-over").style.display = 'block';
-  }, 2000);
+  }, 1000);
 }

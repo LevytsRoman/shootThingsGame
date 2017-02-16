@@ -27,7 +27,6 @@ Game.prototype.start = function(){
 }
 
 Game.prototype.updateScore = function(){
-  // debugger
   this.score ++;
   document.getElementById("score").innerHTML = "Score: " + this.score;
 }
@@ -42,7 +41,6 @@ Game.prototype.updateLives = function(){
 }
 
 Game.prototype.gameOver = function(){
-  // debugger
   var enemies = document.getElementsByClassName("enemy"),
       l = enemies.length;
   for(var i=l-1; i >= 0; i--){

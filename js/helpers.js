@@ -8,14 +8,13 @@ function createElement(elementClass, startingX, startingY){
 }
 
 function moveElement(element, interval, pixels, limit){
-  // debugger
   if(!newGame.over){
     var elementX = element.offsetLeft;
     elementX += pixels;
     element.style.left = elementX + 'px';
     var moveTimer = setTimeout(moveElement.bind(null, element, interval, pixels, limit), interval);
-    if(elementX < 0){
-      // debugger
+    if(elementX < -5){
+      debugger
       clearInterval(moveTimer);
       deleteElement(element);
       newGame.updateLives();
@@ -28,18 +27,18 @@ function moveElement(element, interval, pixels, limit){
 }
 
 function deleteElement(element){
-  element.parentNode.removeChild(element);
+  if(element.parentNode !== null){
+    element.parentNode.removeChild(element);
+  }
 }
 
 function collisionDetect(){
-  // debugger
   if(!this.over){
     var enemies = document.getElementsByClassName("enemy");
     var bullets = document.getElementsByClassName("bullet");
     for(var i=0; i < enemies.length; i++){
       for(var j=0; j < bullets.length; j++){
-        if(bullets[j].offsetTop > enemies[i].offsetTop -50 && bullets[j].offsetTop < enemies[i].offsetTop +50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){
-          // debugger
+        if(bullets[j].offsetTop > enemies[i].offsetTop -50 && bullets[j].offsetTop < enemies[i].offsetTop + 50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){
           this.updateScore();
           blowUp(enemies[i].offsetLeft, enemies[i].offsetTop);
           deleteElement(bullets[j]);
@@ -51,7 +50,6 @@ function collisionDetect(){
 }
 
 function blowUp(x,y){
-  // debugger
   var explosion = document.createElement('div');
   explosion.className = "explosion";
   document.getElementById('gameArea').appendChild(explosion);

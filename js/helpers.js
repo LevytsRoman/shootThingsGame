@@ -38,7 +38,7 @@ function collisionDetect(){
     var bullets = document.getElementsByClassName("bullet");
     for(var i=0; i < enemies.length; i++){
       for(var j=0; j < bullets.length; j++){
-        if(bullets[j].offsetTop > enemies[i].offsetTop -50 && bullets[j].offsetTop < enemies[i].offsetTop + 50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){
+        if(bullets[j].offsetTop > enemies[i].offsetTop - 50 && bullets[j].offsetTop < enemies[i].offsetTop + 50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){
           this.updateScore();
           blowUp(enemies[i].offsetLeft, enemies[i].offsetTop);
           deleteElement(bullets[j]);

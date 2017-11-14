@@ -34,8 +34,9 @@ function deleteElement(element){
 
 function collisionDetect(){
   if(!this.over){
-    var enemies = document.getElementsByClassName("enemy");
+    var enemies = document.querySelectorAll('.enemy, .shootable');
     var bullets = document.getElementsByClassName("bullet");
+
     for(var i=0; i < enemies.length; i++){
       for(var j=0; j < bullets.length; j++){
         if(bullets[j].offsetTop > enemies[i].offsetTop - 50 && bullets[j].offsetTop < enemies[i].offsetTop + 50 && bullets[j].offsetLeft > enemies[i].offsetLeft - 40){

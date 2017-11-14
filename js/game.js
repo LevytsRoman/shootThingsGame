@@ -10,8 +10,8 @@ Game.prototype.spawnEnemy = function(){
     if(enemyRefresh >= 5){enemyRefresh -= 1;}
     if(enemySpawnInterval >= 500){enemySpawnInterval -= 20;}
 
-    var enemy = createElement("enemy", 1000, 350 * Math.random());
-    moveElement(enemy, enemyRefresh, enemyLeft, 1000);
+    var enemy = createElement("enemy", screenWidth, 350 * Math.random());
+    moveElement(enemy, enemyRefresh, enemyLeft, screenWidth);
     setTimeout(this.spawnEnemy.bind(this), enemySpawnInterval);
   }
 }

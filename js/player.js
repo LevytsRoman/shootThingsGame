@@ -20,7 +20,7 @@ Player.prototype.move = function(){
 Player.prototype.shoot = function(){
   window.onclick = function(e){
     var bullet = createElement("bullet", 0, newPlayer.pos);
-    moveElement(bullet, bulletRefresh, bulletLeft, 975);
+    moveElement(bullet, bulletRefresh, bulletLeft, screenWidth - 25);
     collisionDetect(bullet);
   }.bind(this)
 }

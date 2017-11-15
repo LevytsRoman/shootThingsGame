@@ -33,8 +33,20 @@ function deleteElement(element){
 
 function collisionDetect(){
   if(!this.over){
-    var enemies = document.querySelectorAll('.enemy, .shootable');
+    var enemies = document.querySelectorAll('.enemy');
+    var letters = document.querySelectorAll('.shootable');
     var bullets = document.getElementsByClassName("bullet");
+
+    for(var i=0; i < letters.length; i++){
+      for(var j=0; j < bullets.length; j++){
+        if(bullets[j].offsetTop > letters[i].offsetTop - 100 && bullets[j].offsetTop < letters[i].offsetTop -50 && bullets[j].offsetLeft > letters[i].offsetLeft - 25){
+          this.updateScore();
+          blowUp(letters[i].offsetLeft, letters[i].offsetTop -100);
+          deleteElement(bullets[j]);
+          deleteElement(letters[i]);
+        }
+      }
+    }
 
     for(var i=0; i < enemies.length; i++){
       for(var j=0; j < bullets.length; j++){

@@ -20,6 +20,7 @@ body {
     width: 1000px;
     left: 1300px;
 }*/
+.shootable {}
 #controls {
     display: block;
     margin-top: 500px;
@@ -29,10 +30,8 @@ body {
 }
 
 #controls .heading {
-    margin-top: -100px;
     width: 300px;
     display: inline-block;
-    line-height: 100px;
 }
 
 #lives {
